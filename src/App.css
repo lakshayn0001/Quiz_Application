@@ -126,6 +126,18 @@ button:disabled{
   cursor: not-allowed;
 }
 
+#result{
+  background-color: #4a90e2;
+  color: #e2e2e2;
+  height: 40vh;
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+}
 
 
 

@@ -41,6 +41,7 @@ function App() {
   const [array, setArray] = useState([]);
   const [count, setCount] = useState(0);
   const [disable, setDisable] = useState(false);
+  const [check, setCheck]=useState(1);
 
   const handleNext = () => {
 
@@ -48,16 +49,23 @@ function App() {
 
     if (select === api[starting].answer) {
       setCount(prev => prev + 1);
+      setCheck(0);
     }
-
-    setArray(prev => [...prev, select]);
-
+    
+    setArray(prev => [...prev, [
+      {question: api[starting].question},
+      {select: select},
+      {check: check}
+    ]]);
     setSelect(null);
     setDisable(false);
     setStarting(prev => prev + 1);
   };
+    if(check===0){
+      setCheck(1);
+      console.log('work')
+    }
 
-  /* RESULT PAGE */
 
   if (starting >= api.length) {
     return (
@@ -67,12 +75,19 @@ function App() {
         </div>
 
         <div className='quiz_result'>
-          <h1>Your Score: {count}</h1>
+          <div><h1>Your Score: {count}</h1></div>
+          <div id='result'>
+           {array.map( value=> value.map((value)=>(
+            <p>{value.question}{value.select} </p>
+            
+           )))}
+          </div>
+          
         </div>
       </div>
     );
   }
-
+console.log(array)
   return (
     <div className='main'>
       <div className='heading'>
