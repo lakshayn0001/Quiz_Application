@@ -105,10 +105,35 @@ const api = [
 ];
 
 
+
 function App() {
 
   const [starting, setStarting] = useState(1);
+  const[select,setSelect]=useState();
+  const [array,setArray]=useState([]);
   console.log(starting)
+  console.log(array)
+
+  const handleNext=()=>{
+  setArray((e)=>[...e,array]);
+  select();
+  setStarting(starting+1)
+}
+
+  if(starting >= api.length){
+    return(
+      <div className='main'>
+      <div className='heading'>
+        <h1>Quiz Application</h1>
+      </div>
+
+      <div className='quiz_arena'>
+      <h1>Result</h1>  
+      </div>
+      
+      </div>
+    )
+  }
 
   return (
     <div className='main'>
@@ -117,24 +142,21 @@ function App() {
       </div>
 
       <div className='quiz_arena'>
-
         <div id='questions'>
           <h1>{api[starting].question}</h1>
         </div>
 
         
-          {api[starting].options?.map((option, index) => (
-            <div id='options'>
+          {api[starting].options.map((option, index) => (
+            <div id='options' onClick={()=>{setSelect(option.id)}}>
               <p key={index}>{option.id}</p>
-              </div>  
-          ))}
-        
+              </div>
+          ))
+          }
         <button id='options' 
-        onClick={()=>{setStarting(starting+1)}}
+        onClick={handleNext}
         >Next</button>
         </div>
-        
-
       </div>
   )
 }
