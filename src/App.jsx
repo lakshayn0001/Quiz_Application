@@ -115,8 +115,9 @@ function App() {
   console.log(array)
 
   const handleNext=()=>{
-  setArray((e)=>[...e,array]);
-  select();
+
+  setArray((e)=>[...e,select]);
+  setSelect();
   setStarting(starting+1)
 }
 
@@ -154,7 +155,7 @@ function App() {
           ))
           }
         <button id='options' 
-        onClick={handleNext}
+        onClick={()=>{handleNext()}}
         >Next</button>
         </div>
       </div>
