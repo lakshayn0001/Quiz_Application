@@ -1,0 +1,47 @@
+html{
+  background-color: aqua;
+  box-sizing: border-box;
+}
+body{
+  margin: 0px;
+}
+
+.main{
+  background-color: aliceblue;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.heading{
+  background-color: beige;
+}
+.quiz_arena{
+  box-shadow: 0px 0px 10px 10px rgb(154, 154, 220);
+  height: 60vh;
+  width: 50vw;
+  border-radius:10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#questions{
+  background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+#options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 10px 10px rgb(218, 218, 218);
+  margin: 10px;
+}
+
+#next{
+  
+}
