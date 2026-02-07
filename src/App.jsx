@@ -84,26 +84,29 @@ function App() {
   
 
   if (starting >= api.length) {
-    const data =JSON.parse(localStorage.getItem("array"));
-    console.log("data ->",data)
-    return (
-      <div className='main'>
-        <div className='heading'>
-          <h1>Quiz Application</h1>
-        </div>
+  return (
+    <div className="main">
+      <div className="heading">
+        <h1>Quiz Application</h1>
+      </div>
 
-        <div className='quiz_result'>
-          <div><h1>Your Score: {count}</h1></div>
-          <div id='result'>
-           {data.map((value,index)=>(
-            <p>{value.question}{value.select}{value.check}</p>
-           ))}
-          </div>
-          
+      <div className="quiz_result">
+        <h2>Your Score: {count}</h2>
+
+        <div id="result">
+          {array.map((item, index) => (
+            <p key={index}>
+              <strong>{item.question}</strong><br />
+              Answer: {item.select}<br />
+              {item.check ? "✅ Correct" : "❌ Wrong"}
+            </p>
+          ))}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
 console.log(array)
   return (
     <div className='main'>
