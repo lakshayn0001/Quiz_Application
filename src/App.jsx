@@ -1,38 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-
-const api = [
-  {
-    question: "What is the largest planet in our solar system?",
-    options: [
-      { id: 'Earth' },
-      { id: 'Jupiter' },
-      { id: 'Saturn' },
-      { id: 'Neptune' }
-    ],
-    answer: "Jupiter"
-  },
-  {
-    question: "What is the chemical symbol for water?",
-    options: [
-      { id: 'CO2' },
-      { id: 'O2' },
-      { id: 'H2O' },
-      { id: 'NaCl' }
-    ],
-    answer: "H2O"
-  },
-  {
-    question: "What is the hardest natural substance on Earth?",
-    options: [
-      { id: 'Gold' },
-      { id: 'Iron' },
-      { id: 'Diamond' },
-      { id: 'Quartz' }
-    ],
-    answer: "Diamond"
-  }
-];
+import api from '../src/data.js'
 
 function App() {
 
@@ -107,7 +75,6 @@ function App() {
   );
 }
 
-console.log(array)
   return (
     <div className='main'>
       <div className='heading'>
