@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const api = [
@@ -36,12 +36,31 @@ const api = [
 
 function App() {
 
-  const [starting, setStarting] = useState(0);
+  const [starting, setStarting] = useState(()=>{
+    return Number(localStorage.getItem("starting")) || 0;
+  });
   const [select, setSelect] = useState(null);
-  const [array, setArray] = useState([]);
-  const [count, setCount] = useState(0);
+  const [array, setArray] = useState(()=>{
+    const save = localStorage.getItem("array");
+    return save ? JSON.parse(save) : [];
+  });
+  const [count, setCount] = useState(()=>{
+    return Number(localStorage.getItem('count')) || 0;
+  });
   const [disable, setDisable] = useState(false);
-  const [check, setCheck]=useState(1);
+  
+
+  useEffect(()=>{
+    localStorage.setItem("starting",starting)
+  },[starting])
+
+  useEffect(()=>{
+    localStorage.setItem("array",JSON.stringify(array))
+  },[array])
+
+  useEffect(()=>{
+    localStorage.setItem("count",count)
+  },[count])
 
   const handleNext = () => {
 
@@ -49,25 +68,24 @@ function App() {
 
     if (select === api[starting].answer) {
       setCount(prev => prev + 1);
-      setCheck(0);
     }
-    
-    setArray(prev => [...prev, [
-      {question: api[starting].question},
-      {select: select},
-      {check: check}
-    ]]);
+
+    setArray(prev => [...prev, {
+      question: api[starting].question,
+      select: select,
+      check: select === api[starting].answer
+    }
+    ]);
     setSelect(null);
     setDisable(false);
     setStarting(prev => prev + 1);
   };
-    if(check===0){
-      setCheck(1);
-      console.log('work')
-    }
 
+  
 
   if (starting >= api.length) {
+    const data =JSON.parse(localStorage.getItem("array"));
+    console.log("data ->",data)
     return (
       <div className='main'>
         <div className='heading'>
@@ -77,10 +95,9 @@ function App() {
         <div className='quiz_result'>
           <div><h1>Your Score: {count}</h1></div>
           <div id='result'>
-           {array.map( value=> value.map((value)=>(
-            <p>{value.question}{value.select} </p>
-            
-           )))}
+           {data.map((value,index)=>(
+            <p>{value.question}{value.select}{value.check}</p>
+           ))}
           </div>
           
         </div>

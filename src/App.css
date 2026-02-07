@@ -75,7 +75,7 @@ html, body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f7f7f7;
+  background: #006075;
   padding: 12px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -86,7 +86,7 @@ html, body{
 
 
 #options:hover{
-  background: #e6f4ff;
+  background: #0091ff;
   transform: translateY(-2px);
 }
 
